@@ -1,0 +1,15 @@
+#!/bin/bash -login
+
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=14
+#SBATCH --partition gpu
+#SBATCH --job-name=iris_test
+#SBATCH --time=10:00
+##SBATCH --reservation=jgi_ml_course
+
+module load CUDA/8.0.44
+module load languages/anaconda3/5.2.0-tflow-1.7
+
+cd $SLURM_SUBMIT_DIR
+time python premade_estimator.py
