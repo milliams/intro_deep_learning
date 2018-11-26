@@ -6,9 +6,9 @@
 #SBATCH --partition gpu
 #SBATCH --job-name=iris_test
 #SBATCH --time=10:00
-#SBATCH --reservation=jgi_ml_course
+#SBATCH --reservation=deeplearning
 
-module load languages/anaconda3/5.2.0-tflow-1.7
+module load languages/anaconda3/5.2.0-tflow-1.11
 
 cd $SLURM_SUBMIT_DIR
-time python premade_estimator.py
+time python3 premade_estimator.py
