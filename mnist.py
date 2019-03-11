@@ -22,6 +22,7 @@ from absl import flags
 import tensorflow as tf  # pylint: disable=g-bad-import-order
 import numpy as np
 import imageio
+import getpass
 import os
 
 import mnist_dataset as dataset
@@ -97,7 +98,7 @@ def define_mnist_flags():
   flags_core.define_base()
   flags_core.define_image()
   flags.adopt_module_key_flags(flags_core)
-  flags_core.set_defaults(data_dir='/tmp/mnist_data',
+  flags_core.set_defaults(data_dir='/tmp/{0}/mnist_data'.format(getpass.getuser()),
                           batch_size=100,
                           train_epochs=40
                           )
