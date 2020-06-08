@@ -1,0 +1,6 @@
+tensorflow-gpu
+tensorflow-datasets
+ipywidgets
+scikit-learn
+scikit-image
+#pandas
