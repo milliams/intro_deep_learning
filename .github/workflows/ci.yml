@@ -22,3 +22,11 @@ jobs:
       run: |
         jupyter nbconvert intro_deep_learning.ipynb --to slides --SlidesExporter.reveal_scroll=True --SlidesExporter.reveal_theme=solarized --output=index
         mv index.slides.html index.html
+    - name: Assemble artefact
+      run: |
+        mkdir -p intro_deep_learning
+        cp *.{html,png,css,csv,svg,gif,jpg} intro_deep_learning
+    - uses: actions/upload-artifact@v2
+      with:
+        name: intro_deep_learning
+        path: intro_deep_learning
