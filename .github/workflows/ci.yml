@@ -46,3 +46,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # See https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ./intro_deep_learning.tar.gz
         asset_name: intro_deep_learning.tar.gz
+        asset_content_type: application/x-xz
