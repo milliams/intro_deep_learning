@@ -22,11 +22,27 @@ jobs:
       run: |
         jupyter nbconvert intro_deep_learning.ipynb --to slides --SlidesExporter.reveal_scroll=True --SlidesExporter.reveal_theme=solarized --output=index
         mv index.slides.html index.html
-    - name: Assemble artefact
+    - name: Create artefact
       run: |
         mkdir -p intro_deep_learning
         cp *.{html,png,svg,jpg} intro_deep_learning
-    - uses: actions/upload-artifact@v2
+        tar -cJvf intro_deep_learning.tar.xz intro_deep_learning
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        name: intro_deep_learning
-        path: intro_deep_learning
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # See https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./intro_deep_learning.tar.gz
+        asset_name: intro_deep_learning.tar.gz
