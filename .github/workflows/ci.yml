@@ -26,24 +26,7 @@ jobs:
       run: |
         mkdir -p intro_deep_learning
         cp *.{html,png,svg,jpg} intro_deep_learning
-        tar -cJvf intro_deep_learning.tar.xz intro_deep_learning
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/upload-artifact@v2
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.sha }}
-        draft: false
-        prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # See https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./intro_deep_learning.tar.gz
-        asset_name: intro_deep_learning.tar.gz
-        asset_content_type: application/x-xz
+        name: intro_deep_learning
+        path: intro_deep_learning
