@@ -3,4 +3,5 @@ tensorflow-datasets
 ipywidgets
 scikit-learn
 scikit-image
+seaborn
 #pandas
