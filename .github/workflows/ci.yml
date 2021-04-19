@@ -17,7 +17,9 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: python -m pip install nbconvert
+      run: python -m pip install nbconvert seaborn
+    - name: generate Iris plot
+      run: python plot_iris_scatter.py
     - name: Build slides
       run: |
         jupyter nbconvert intro_deep_learning.ipynb --to slides --SlidesExporter.reveal_scroll=True --SlidesExporter.reveal_theme=solarized --output=index
